@@ -1,0 +1,23 @@
+{
+  "name": "pachyderm",
+  "version": "0.0.1",
+  "description": "Lazily require a directory, loading nothing until it is called",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "require",
+    "directory",
+    "lazy"
+  ],
+  "author": "Andrew Yurisich <droogans@gmail.com> (http://andrew.yurisich.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "jshint": "^2.8.0"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "walkdir": "0.0.10"
+  }
+}
