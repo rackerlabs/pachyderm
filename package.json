@@ -1,6 +1,6 @@
 {
   "name": "pachyderm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lazily require a directory, loading nothing until it is called",
   "main": "index.js",
   "scripts": {
