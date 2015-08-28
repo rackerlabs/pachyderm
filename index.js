@@ -119,8 +119,8 @@ var sortJson = function (json) {
    requires everything in the package all at once.
 
    In summary, when you require an entire npm module like this, you shouldn't sit around waiting for 700ms or more
-   while the *entire* catalog of the package's contents (and their dependencies) load for you. Instead, you only load the one
-   file you're asking for, one at a time.
+   while the *entire* catalog of the package's contents (and their dependencies) load for you. Instead, you only
+   load the one file you're asking for, one at a time.
 
    If you're wondering why it's done this way, it's because adding keys to a javascript object can be stringified
    easily, but adding getters isn't supported by JSON.stringify. So this post-processing step avoids that issue.
@@ -179,9 +179,10 @@ var go = function (rules) {
         var greedyJson = JSON.stringify(sortJson(json), null, 4).replace(/"/g, '');
         var lazyJson = convertToLazyRequireJson(greedyJson);
         var toWrite = util.format(indexTemplate, module.exports.header, lazyJson);
-        fs.writeFile(path.resolve(module.exports.output), toWrite, function (err) {
+        var outputLocation = path.join(directory, module.exports.output);
+        fs.writeFile(outputLocation, toWrite, function (err) {
             if (!err) {
-                console.log('Output file generated in', module.exports.output);
+                console.log('Output file generated in', outputLocation);
             }
         });
         // put the old global settings back
@@ -193,7 +194,7 @@ var go = function (rules) {
 module.exports = {
     go: go,
     directory: path.resolve('.'),
-    output: path.join(path.resolve('.'), 'index.js'),
+    output: 'index.js',
     shouldBeIndexed: function (filename) {
         return _.all([
             filename.slice(-3) === '.js',
