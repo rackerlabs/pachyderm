@@ -43,19 +43,19 @@ api
         ├── util.js
         └── util.spec.js
 apiSDK
-├── components
-│   ├── preferences.js
-│   ├── purchaseOrders
-│   │   ├── add.js
-│   │   ├── disable.js
-│   │   └── history.js
-│   ├── purchaseOrders.js
-│   ├── search
-│   │   ├── account.js
-│   │   └── keyword.js
-│   ├── transactions.js
-│   └── util.js
-└── index.js
+└── components
+    ├── preferences.js
+    ├── purchaseOrders
+    │   ├── add.js
+    │   ├── disable.js
+    │   └── history.js
+    ├── purchaseOrders.js
+    ├── search
+    │   ├── account.js
+    │   └── keyword.js
+    ├── transactions.js
+    ├── util.js
+    └── index.js
 tests
 ├── preferences.js
 ├── purchaseOrders
@@ -105,14 +105,14 @@ Later, perhaps in some gulp/grunt task, an extra step is added to run pachyderm 
 ```js
 var pachyderm = require('pachyderm');
 
-pachyderm.go({ directory: './apiSDK/components/', output: './apiSDK/index.js' });
+pachyderm.go({ directory: './apiSDK/components/' });
 ```
 
 This would be committed as part of the current release. Finally, you'd `cd` into the `apiSDK` directory and run `npm publish`.
 
 This allows the API and SDK to stay in sync in the same project, even though to the rest of the world the SDK appears to be a stand alone project.
 
-The resulting `./apiSDK/index.js` would look like this:
+The resulting `./apiSDK/components/index.js` would look like this:
 
 ```js
 /**
@@ -145,7 +145,7 @@ Here are the defaults for running `pachyderm` without specifying anything.
 ```js
 pachyderm.go({
     directory: path.resolve('.'),
-    output: path.join(path.resolve('.'), 'index.js'),
+    output: 'index.js',
     shouldBeIndexed: function (filename) {
         return _.all([
             filename.slice(-3) === '.js',
@@ -167,7 +167,7 @@ The directory to be traversed and transformed into an object.
 
 ### output
 
-Where the resulting javascript file should go.
+The name of the resulting javascript file. It *will always be the direct child of the `directory` that was traversed*.
 
 ### shouldBeIndexed
 
